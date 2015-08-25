@@ -21,7 +21,7 @@
 #import <GNSMessages.h>
 #import "MessageViewController.h"
 
-static NSString * const kMyAPIKey = @"<insert API key here>";
+static NSString * const kMyAPIKey = @"AIzaSyAfcGHFKdlcIco4Fbb9HUR8IdrsYb272TE";
 
 
 @interface AppDelegate ()
