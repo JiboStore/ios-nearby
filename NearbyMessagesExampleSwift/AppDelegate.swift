@@ -19,7 +19,7 @@
 
 import UIKit
 
-let kMyAPIKey = "<insert API key here>"
+let kMyAPIKey = "AIzaSyAfcGHFKdlcIco4Fbb9HUR8IdrsYb272TE"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
