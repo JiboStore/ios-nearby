@@ -525,7 +525,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NearbyMessagesExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.NearbyMessageExample;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.dreamrocket.chubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -541,7 +541,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NearbyMessagesExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.NearbyMessageExample;
+				PRODUCT_BUNDLE_IDENTIFIER = sg.dreamrocket.chubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
