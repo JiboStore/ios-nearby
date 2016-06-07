@@ -144,16 +144,42 @@ static NSString * const kMyAPIKey = @"AIzaSyAfcGHFKdlcIco4Fbb9HUR8IdrsYb272TE";
     // Publish the name to nearby devices.
     GNSMessage *pubMessage =
         [GNSMessage messageWithContent:[name dataUsingEncoding:NSUTF8StringEncoding]];
-    _publication = [_messageMgr publicationWithMessage:pubMessage];
 
-    _subscription = [_messageMgr
-        subscriptionWithMessageFoundHandler:^(GNSMessage *message) {
-          [weakSelf.messageViewController addMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
-        }
-                         messageLostHandler:^(GNSMessage *message) {
-                           [weakSelf.messageViewController
-                               removeMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
-                         }];
+      // ++ KIM 160607
+//    _publication = [_messageMgr publicationWithMessage:pubMessage];
+//    _subscription = [_messageMgr
+//        subscriptionWithMessageFoundHandler:^(GNSMessage *message) {
+//          [weakSelf.messageViewController addMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
+//        }
+//                         messageLostHandler:^(GNSMessage *message) {
+//                           [weakSelf.messageViewController
+//                               removeMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
+//                         }];
+      // -- KIM 160607
+      
+      
+      // + KIM 160607
+      GNSDiscoveryMediums kDiscoveryMediums = kGNSDiscoveryMediumsBLE;  // disable audio
+//      GNSDiscoveryMediums kDiscoveryMediums = kGNSDiscoveryMediumsAudio; // disable bluetooth
+      
+      _publication = [_messageMgr publicationWithParams:[GNSPublicationParams paramsWithMessage:pubMessage strategy:[GNSStrategy strategyWithParamsBlock:^(GNSStrategyParams *p){
+          p.discoveryMediums = kDiscoveryMediums;   // disable audio
+      }]]];
+      
+      GNSSubscriptionParams *subscriptionParams = [GNSSubscriptionParams paramsWithStrategy:[GNSStrategy strategyWithParamsBlock:^(GNSStrategyParams *p){
+          p.discoveryMediums = kDiscoveryMediums;   // disable audio
+      }]];
+      
+      _subscription = [_messageMgr subscriptionWithParams:subscriptionParams
+                                    messageFoundHandler:^(GNSMessage *message) {
+                                        [weakSelf.messageViewController addMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
+                                    }
+                                     messageLostHandler:^(GNSMessage *message) {
+                                         [weakSelf.messageViewController
+                                          removeMessage:[[NSString alloc] initWithData:message.content encoding:NSUTF8StringEncoding]];
+                                     }];
+      // - KIM 160607
+      
   }
 }
 
